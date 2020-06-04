@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/locations/loja.png" type="Texture" id=1]
+[ext_resource path="res://Locations/Store.gd" type="Script" id=2]
+[ext_resource path="res://player/Player.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 34.0047, 5.32809 )
+
+[node name="Store" type="Node"]
+script = ExtResource( 2 )
+
+[node name="Store" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 491.146, 161.455 )
+shape = SubResource( 1 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 454.536, 212.498, 431.698, 211.478, 432.31, 166.823, 423.95, 162.745, 420.076, 144.801, 413.143, 139.907, 273.438, 142.611, 270.532, 148.423, 269.757, 168.763, 254.067, 186.39, 255.035, 191.814, 259.684, 192.783, 262.009, 197.819, 260.653, 202.856, 262.59, 211.767, 244.575, 220.677, 244.188, 207.892, 233.727, 207.699, 233.446, 200.706, 238.842, 199.506, 239.592, 195.759, 239.292, 192.911, 235.095, 190.963, 206.616, 190.813, 200.32, 172.077, 192, 176, 192, 176, 168, 192, 157.121, 200.01, 156.822, 204.956, 157.721, 208.853, 158.47, 211.551, 157.271, 217.397, 158.32, 220.994, 159.969, 224.892, 162.368, 230.737, 166.115, 235.684, 168.063, 240.63, 165.066, 241.829, 170.612, 244.977, 205.986, 247.675, 208.084, 251.872, 204.787, 255.919, 195.493, 258.317, 199.101, 275.505, 177.51, 281.65, 171.531, 287.795, 172.196, 303.407, 183.699, 326.149, 298.763, 326.149, 301.088, 328.473, 299.732, 332.541, 288.109, 332.541, 287.528, 342.033, 290.046, 344.358, 288.497, 351.138, 289.271, 359.661, 297.214, 359.274, 296.051, 373.027, 230.964, 373.221, 270.887, 406.707, 269.69, 451.013, 236.759, 533.639, 248.135, 533.04, 272.085, 557.589, 272.683, 573.755, 273.283, 622.894, 0, 624, 0, -24, 448, -24 )
+
+[node name="Balcony" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Balcony"]
+polygon = PoolVector2Array( 539.883, 180.773, 577.944, 319.425, 590.631, 324.862, 605.131, 328.487, 624.161, 329.393, 652.254, 327.581, 680.347, 332.112, 664.035, 301.3, 638.661, 296.769, 616.912, 280.457, 578.85, 178.054 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D2"]
+polygon = PoolVector2Array( 639.567, 186.21, 725.658, 302.207, 737.439, 327.581, 778.219, 327.581, 786.375, 10.4038, 638.661, 11.31 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D3"]
+polygon = PoolVector2Array( 538.771, 177.899, 548.605, 135.883, 635.318, 136.777, 636.212, 169.853 )
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D4"]
+polygon = PoolVector2Array( 781.033, 326.295, 794.443, 330.765, 870.429, 390.66, 890.99, 391.554, 915.127, 404.964, 944.627, 427.313, 962.507, 439.828, 939.264, 620.407, 934.794, 599.846, 271.478, 602.528, 271.478, 631.135, 969.658, 628.453, 1002.73, 16.0924, 789.973, 15.1984 )
+
+[node name="player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 431.239, 338.733 )
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

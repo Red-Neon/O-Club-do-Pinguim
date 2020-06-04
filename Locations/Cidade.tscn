@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/locations/cidade.png" type="Texture" id=1]
+[ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Locations/Cidade.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 24.6336, 4.65941 )
+
+[node name="City" type="Node"]
+script = ExtResource( 3 )
+
+[node name="Sprite" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 644.588, 236.67 )
+collision_layer = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="Superior" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( -2, 216.8, 45, 222.8, 88, 236.8, 109, 265.8, 115, 276.8, 141.531, 292.492, 177.595, 316.535, 258.738, 301.508, 389.969, 267.448, 448.071, 253.424, 471.112, 241.402, 507.175, 239.399, 521, 270.577, 615, 269.153, 617, 227.8, 678, 230.8, 682.484, 248.415, 774.646, 257.431, 839.761, 271.455, 868, 281.8, 875, 290.8, 857, 308.8, 836, 326.8, 823, 329.8, 829, 340.8, 851, 349.8, 883, 354.8, 905, 350.8, 939, 332.8, 954, 319.8, 976, 304.8, 999, 289.8, 1001, 289.8, 1025, 277.8, 1034, 269.8, 1034, 268.8, 1036, -19.2, -28, -24.2 )
+
+[node name="Inferior" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( -11.1563, 294.598, 8.07265, 305.73, 2.00035, 317.875, -0.0237579, 326.983, 22.2413, 337.104, 44.5065, 341.152, 60.6993, 349.248, 77.9041, 363.417, 98.1451, 390.742, 91.0608, 406.935, 53.6149, 422.116, 73.8559, 424.14, 91.0608, 483.851, 123.446, 480.815, 149.76, 493.972, 174.049, 500.044, 177.085, 513.201, 168.579, 523.9, 162.568, 534.919, 146.54, 547.942, 105.229, 562.791, 114.338, 573.924, 119.398, 607.321, 127.495, 602.261, 823.785, 604.285, 852.123, 582.02, 870.339, 549.634, 909.809, 526.357, 931.062, 520.285, 973.569, 500.044, 972.557, 476.767, 953.328, 455.514, 945.231, 437.297, 970.532, 416.044, 1033.28, 386.694, 1024.17, 605.297, -8.12016, 609.345 )
+
+[node name="player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 473.41, 429.878 )
+collision_mask = 2
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
